@@ -1,45 +1,43 @@
-const BACKEND_URL = "https://bank-statement-converter-moih.onrender.com";
+const API_URL = "https://bank-statement-converter-moih.onrender.com/upload";
 
-async function convert() {
-  const fileInput = document.getElementById("pdfFile");
+function scrollToApp() {
+  document.getElementById("app").scrollIntoView({ behavior: "smooth" });
+}
+
+async function upload() {
+  const fileInput = document.getElementById("fileInput");
   const status = document.getElementById("status");
-  const csvLink = document.getElementById("csvLink");
-  const excelLink = document.getElementById("excelLink");
+  const downloads = document.getElementById("downloads");
 
   if (!fileInput.files.length) {
-    alert("Please select a PDF file");
+    alert("Please select a PDF");
     return;
   }
 
-  status.textContent = "⏳ Processing...";
-  csvLink.hidden = true;
-  excelLink.hidden = true;
+  status.innerText = "⏳ Processing...";
+  downloads.classList.add("hidden");
 
   const formData = new FormData();
   formData.append("file", fileInput.files[0]);
 
   try {
-    const res = await fetch(`${BACKEND_URL}/upload`, {
+    const res = await fetch(API_URL, {
       method: "POST",
       body: formData
     });
 
     const data = await res.json();
 
-    if (!res.ok) {
-      status.textContent = "❌ Failed";
-      return;
-    }
+    if (!res.ok) throw new Error(data.detail || "Failed");
 
-    status.textContent = "✅ Done!";
+    status.innerText = "✅ Done!";
 
-    csvLink.href = BACKEND_URL + data.download_csv;
-    excelLink.href = BACKEND_URL + data.download_excel;
+    document.getElementById("csvLink").href = data.download_csv;
+    document.getElementById("excelLink").href = data.download_excel;
 
-    csvLink.hidden = false;
-    excelLink.hidden = false;
+    downloads.classList.remove("hidden");
 
   } catch (err) {
-    status.textContent = "❌ Server not reachable";
+    status.innerText = "❌ Error: " + err.message;
   }
 }

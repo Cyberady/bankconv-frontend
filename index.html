@@ -2,34 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>BankConv – Bank Statement Converter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BankConv — Bank Statement Converter</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- HERO -->
+  <!-- HERO / LANDING -->
   <section class="hero">
     <h1>🏦 BankConv</h1>
-    <p>Convert bank statements to Excel in seconds</p>
+    <p>Convert bank statements to Excel in seconds.</p>
+    <button onclick="scrollToApp()">Convert Now</button>
   </section>
 
-  <!-- APP CARD -->
-  <section class="card">
-    <input type="file" id="pdfFile" accept=".pdf" />
-    <button onclick="convert()">Convert Statement</button>
+  <!-- FEATURES -->
+  <section class="features">
+    <div>📄 Upload PDF</div>
+    <div>⚡ Instant Processing</div>
+    <div>📊 Excel & CSV</div>
+    <div>🔐 Secure & Private</div>
+  </section>
+
+  <!-- CONVERTER APP -->
+  <section class="app" id="app">
+    <h2>Upload Bank Statement</h2>
+
+    <input type="file" id="fileInput" accept=".pdf" />
+    <button onclick="upload()">Convert Statement</button>
 
     <p id="status"></p>
 
-    <div class="links">
-      <a id="csvLink" hidden>⬇ Download CSV</a>
-      <a id="excelLink" hidden>⬇ Download Excel</a>
+    <div id="downloads" class="hidden">
+      <a id="csvLink" target="_blank">⬇ Download CSV</a>
+      <a id="excelLink" target="_blank">⬇ Download Excel</a>
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    Built with ❤️ by BankConv
+    © 2025 BankConv • Built with ❤️
   </footer>
 
   <script src="script.js"></script>
