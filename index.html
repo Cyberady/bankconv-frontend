@@ -2,43 +2,44 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>BankConv — Bank Statement Converter</title>
+  <title>BankConv – Bank Statement Converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- HERO / LANDING -->
+  <!-- HERO -->
   <section class="hero">
     <h1>🏦 BankConv</h1>
-    <p>Convert bank statements to Excel in seconds.</p>
-    <button onclick="scrollToApp()">Convert Now</button>
+    <p>Convert bank statements to Excel in seconds</p>
+    <button onclick="scrollToConverter()">Convert Statement</button>
   </section>
 
-  <!-- FEATURES -->
-  <section class="features">
-    <div>📄 Upload PDF</div>
-    <div>⚡ Instant Processing</div>
-    <div>📊 Excel & CSV</div>
-    <div>🔐 Secure & Private</div>
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <div class="step">📄 Upload PDF</div>
+    <div class="step">⚙️ Process Securely</div>
+    <div class="step">⬇️ Download Excel</div>
   </section>
 
-  <!-- CONVERTER APP -->
-  <section class="app" id="app">
+  <!-- CONVERTER -->
+  <section class="converter" id="converter">
     <h2>Upload Bank Statement</h2>
 
     <input type="file" id="fileInput" accept=".pdf" />
-    <button onclick="upload()">Convert Statement</button>
+    <button onclick="upload()">Convert</button>
 
     <p id="status"></p>
 
-    <div id="downloads" class="hidden">
-      <a id="csvLink" target="_blank">⬇ Download CSV</a>
-      <a id="excelLink" target="_blank">⬇ Download Excel</a>
+    <div class="downloads">
+      <a id="csvLink" target="_blank">⬇ CSV</a>
+      <a id="excelLink" target="_blank">⬇ Excel</a>
     </div>
   </section>
 
+  <!-- FOOTER -->
   <footer>
-    © 2025 BankConv • Built with ❤️
+    <p>© 2025 BankConv · Built by Aditya</p>
   </footer>
 
   <script src="script.js"></script>
