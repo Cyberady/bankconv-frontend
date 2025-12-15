@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>BankConv — Smart Bank Statement Converter</title>
+  <title>BankConv – Bank Statement Converter</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Font -->
+  <!-- Poppins Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
@@ -15,48 +15,56 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">🏦 BankConv</div>
-    <button class="nav-btn">Get Started</button>
+    <div class="nav-links">
+      <a href="#">Pricing</a>
+      <a href="#">Documents</a>
+      <a href="#">About</a>
+      <a href="#" class="btn-nav">Sign In</a>
+    </div>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <section class="hero">
-    <h1>Convert Bank Statements<br><span>Into Excel in Seconds</span></h1>
-    <p>Secure • Fast • Professional • Multi-bank support</p>
+    <h1>The world’s most simple bank statement converter</h1>
+    <p>
+      Easily convert PDF bank statements into clean Excel (XLSX) and CSV formats,
+      designed especially for accountants and CAs.
+    </p>
 
-    <div class="upload-card">
+    <!-- CONVERTER BOX -->
+    <div class="converter-box">
       <input type="file" id="fileInput" accept="application/pdf" hidden />
-      <label for="fileInput" class="file-btn">📄 Choose PDF</label>
+      <button id="uploadBtn">Click here to convert a PDF</button>
 
-      <button class="convert-btn" onclick="uploadPDF()">⚡ Convert Statement</button>
+      <div id="status"></div>
 
-      <p id="status"></p>
-
-      <div class="download-links" id="downloads">
-        <a id="csvLink" target="_blank">⬇ Download CSV</a>
-        <a id="excelLink" target="_blank">⬇ Download Excel</a>
+      <div id="downloads" class="downloads hidden">
+        <a id="csvLink" class="download-btn">⬇ Download CSV</a>
+        <a id="excelLink" class="download-btn">⬇ Download Excel</a>
       </div>
     </div>
   </section>
 
-  <!-- FEATURES -->
+  <!-- TRUST SECTION -->
   <section class="features">
     <div class="feature">
-      <h3>🔐 Secure</h3>
+      🔒
+      <h3>Secure</h3>
       <p>Your files are processed securely and never shared.</p>
     </div>
+
     <div class="feature">
-      <h3>⚡ Fast</h3>
-      <p>42-page PDFs converted in seconds.</p>
+      🏛️
+      <h3>CA Ready</h3>
+      <p>Debit/Credit format designed for accountants.</p>
     </div>
+
     <div class="feature">
-      <h3>📊 Accurate</h3>
-      <p>Debit / Credit detected using balance logic.</p>
+      🎯
+      <h3>Accurate</h3>
+      <p>Smart balance-based transaction detection.</p>
     </div>
   </section>
-
-  <footer>
-    <p>© 2025 BankConv • Built with ❤️ by Aditya</p>
-  </footer>
 
   <script src="script.js"></script>
 </body>

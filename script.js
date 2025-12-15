@@ -1,39 +1,41 @@
-const API_URL = "https://bank-statement-converter-moih.onrender.com/upload";
+const uploadBtn = document.getElementById("uploadBtn");
+const fileInput = document.getElementById("fileInput");
+const statusText = document.getElementById("status");
+const downloads = document.getElementById("downloads");
+const csvLink = document.getElementById("csvLink");
+const excelLink = document.getElementById("excelLink");
 
-async function uploadPDF() {
-  const fileInput = document.getElementById("fileInput");
-  const status = document.getElementById("status");
-  const downloads = document.getElementById("downloads");
+uploadBtn.onclick = () => fileInput.click();
 
-  if (!fileInput.files.length) {
-    status.innerText = "❌ Please select a PDF file";
-    return;
-  }
+fileInput.onchange = async () => {
+  const file = fileInput.files[0];
+  if (!file) return;
 
-  status.innerText = "⏳ Processing...";
-  downloads.style.display = "none";
+  statusText.innerText = "⏳ Processing...";
+  downloads.classList.add("hidden");
 
   const formData = new FormData();
-  formData.append("file", fileInput.files[0]);
+  formData.append("file", file);
 
   try {
-    const res = await fetch(API_URL, {
+    const res = await fetch("https://bank-statement-converter-moih.onrender.com/upload", {
       method: "POST",
       body: formData
     });
 
     const data = await res.json();
 
-    document.getElementById("csvLink").href =
-      "https://bank-statement-converter-moih.onrender.com" + data.download_csv;
+    if (!res.ok) {
+      statusText.innerText = "❌ Failed to convert";
+      return;
+    }
 
-    document.getElementById("excelLink").href =
-      "https://bank-statement-converter-moih.onrender.com" + data.download_excel;
-
-    status.innerText = "✅ Conversion successful!";
-    downloads.style.display = "block";
+    statusText.innerText = "✅ Done!";
+    csvLink.href = "https://bank-statement-converter-moih.onrender.com" + data.download_csv;
+    excelLink.href = "https://bank-statement-converter-moih.onrender.com" + data.download_excel;
+    downloads.classList.remove("hidden");
 
   } catch (err) {
-    status.innerText = "❌ Server error. Try again.";
+    statusText.innerText = "❌ Server error";
   }
-}
+};
