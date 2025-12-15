@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BankConv – Bank Statement Converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>🏦 BankConv</h1>
+    <p>Convert bank statements to Excel in seconds</p>
+  </section>
+
+  <!-- APP CARD -->
+  <section class="card">
+    <input type="file" id="pdfFile" accept=".pdf" />
+    <button onclick="convert()">Convert Statement</button>
+
+    <p id="status"></p>
+
+    <div class="links">
+      <a id="csvLink" hidden>⬇ Download CSV</a>
+      <a id="excelLink" hidden>⬇ Download Excel</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    Built with ❤️ by BankConv
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
