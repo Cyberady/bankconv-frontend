@@ -1,41 +1,37 @@
-const uploadBtn = document.getElementById("uploadBtn");
-const fileInput = document.getElementById("fileInput");
-const statusText = document.getElementById("status");
-const downloads = document.getElementById("downloads");
-const csvLink = document.getElementById("csvLink");
-const excelLink = document.getElementById("excelLink");
+const API_BASE = "https://bank-statement-converter-moih.onrender.com";
 
-uploadBtn.onclick = () => fileInput.click();
+async function convert() {
+  const fileInput = document.getElementById("fileInput");
+  const status = document.getElementById("status");
+  const downloads = document.getElementById("downloads");
 
-fileInput.onchange = async () => {
-  const file = fileInput.files[0];
-  if (!file) return;
+  if (!fileInput.files.length) {
+    status.innerText = "Please upload a PDF file";
+    return;
+  }
 
-  statusText.innerText = "⏳ Processing...";
+  status.innerText = "⏳ Converting...";
   downloads.classList.add("hidden");
 
   const formData = new FormData();
-  formData.append("file", file);
+  formData.append("file", fileInput.files[0]);
 
   try {
-    const res = await fetch("https://bank-statement-converter-moih.onrender.com/upload", {
+    const res = await fetch(`${API_BASE}/upload`, {
       method: "POST",
       body: formData
     });
 
     const data = await res.json();
 
-    if (!res.ok) {
-      statusText.innerText = "❌ Failed to convert";
-      return;
-    }
+    if (!res.ok) throw new Error(data.detail || "Failed");
 
-    statusText.innerText = "✅ Done!";
-    csvLink.href = "https://bank-statement-converter-moih.onrender.com" + data.download_csv;
-    excelLink.href = "https://bank-statement-converter-moih.onrender.com" + data.download_excel;
+    document.getElementById("csvLink").href = API_BASE + data.download_csv;
+    document.getElementById("excelLink").href = API_BASE + data.download_excel;
+
     downloads.classList.remove("hidden");
-
+    status.innerText = "✅ Done!";
   } catch (err) {
-    statusText.innerText = "❌ Server error";
+    status.innerText = "❌ Conversion failed";
   }
-};
+}
