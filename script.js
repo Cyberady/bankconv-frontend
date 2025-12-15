@@ -1,42 +1,39 @@
+const API_URL = "https://bank-statement-converter-moih.onrender.com/upload";
+
 async function uploadPDF() {
   const fileInput = document.getElementById("fileInput");
   const status = document.getElementById("status");
   const downloads = document.getElementById("downloads");
 
   if (!fileInput.files.length) {
-    status.innerHTML = "❌ Please select a PDF file";
+    status.innerText = "❌ Please select a PDF file";
     return;
   }
 
-  status.innerHTML = "⏳ Processing statement...";
+  status.innerText = "⏳ Processing...";
   downloads.style.display = "none";
 
   const formData = new FormData();
   formData.append("file", fileInput.files[0]);
 
   try {
-    const response = await fetch(
-      "https://bank-statement-converter-moih.onrender.com/upload",
-      {
-        method: "POST",
-        body: formData
-      }
-    );
+    const res = await fetch(API_URL, {
+      method: "POST",
+      body: formData
+    });
 
-    const data = await response.json();
+    const data = await res.json();
 
-    if (!response.ok) {
-      status.innerHTML = "❌ Failed to process statement";
-      return;
-    }
+    document.getElementById("csvLink").href =
+      "https://bank-statement-converter-moih.onrender.com" + data.download_csv;
 
-    status.innerHTML = "✅ Done!";
+    document.getElementById("excelLink").href =
+      "https://bank-statement-converter-moih.onrender.com" + data.download_excel;
 
-    document.getElementById("csvLink").href = data.download_csv;
-    document.getElementById("excelLink").href = data.download_excel;
+    status.innerText = "✅ Conversion successful!";
+    downloads.style.display = "block";
 
-    downloads.style.display = "flex";
   } catch (err) {
-    status.innerHTML = "❌ Server error";
+    status.innerText = "❌ Server error. Try again.";
   }
 }

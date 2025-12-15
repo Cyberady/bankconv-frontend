@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BankConv – Smart Bank Statement Converter</title>
+  <title>BankConv — Smart Bank Statement Converter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Poppins Font -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css" />
@@ -18,18 +18,20 @@
     <button class="nav-btn">Get Started</button>
   </nav>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <section class="hero">
-    <h1>Convert Bank Statements<br><span>to Excel in Seconds</span></h1>
-    <p>Secure • Fast • Professional • No Signup Required</p>
+    <h1>Convert Bank Statements<br><span>Into Excel in Seconds</span></h1>
+    <p>Secure • Fast • Professional • Multi-bank support</p>
 
-    <div class="card">
-      <input type="file" id="fileInput" accept=".pdf" />
-      <button onclick="uploadPDF()">Convert Statement</button>
+    <div class="upload-card">
+      <input type="file" id="fileInput" accept="application/pdf" hidden />
+      <label for="fileInput" class="file-btn">📄 Choose PDF</label>
 
-      <div id="status"></div>
+      <button class="convert-btn" onclick="uploadPDF()">⚡ Convert Statement</button>
 
-      <div class="downloads" id="downloads">
+      <p id="status"></p>
+
+      <div class="download-links" id="downloads">
         <a id="csvLink" target="_blank">⬇ Download CSV</a>
         <a id="excelLink" target="_blank">⬇ Download Excel</a>
       </div>
@@ -38,15 +40,22 @@
 
   <!-- FEATURES -->
   <section class="features">
-    <div class="feature">⚡ Lightning Fast</div>
-    <div class="feature">🔒 Secure Processing</div>
-    <div class="feature">📊 Accurate Parsing</div>
-    <div class="feature">💼 Built for Professionals</div>
+    <div class="feature">
+      <h3>🔐 Secure</h3>
+      <p>Your files are processed securely and never shared.</p>
+    </div>
+    <div class="feature">
+      <h3>⚡ Fast</h3>
+      <p>42-page PDFs converted in seconds.</p>
+    </div>
+    <div class="feature">
+      <h3>📊 Accurate</h3>
+      <p>Debit / Credit detected using balance logic.</p>
+    </div>
   </section>
 
-  <!-- FOOTER -->
   <footer>
-    © 2025 BankConv • Built with ❤️ by Aditya
+    <p>© 2025 BankConv • Built with ❤️ by Aditya</p>
   </footer>
 
   <script src="script.js"></script>
