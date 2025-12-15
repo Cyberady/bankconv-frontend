@@ -1,47 +1,42 @@
-const API_URL = "https://bank-statement-converter-moih.onrender.com";
-
-function scrollToConverter() {
-  document.getElementById("converter").scrollIntoView({ behavior: "smooth" });
-}
-
-async function upload() {
+async function uploadPDF() {
   const fileInput = document.getElementById("fileInput");
   const status = document.getElementById("status");
-  const csv = document.getElementById("csvLink");
-  const excel = document.getElementById("excelLink");
+  const downloads = document.getElementById("downloads");
 
   if (!fileInput.files.length) {
-    status.innerText = "❌ Please select a PDF";
+    status.innerHTML = "❌ Please select a PDF file";
     return;
   }
+
+  status.innerHTML = "⏳ Processing statement...";
+  downloads.style.display = "none";
 
   const formData = new FormData();
   formData.append("file", fileInput.files[0]);
 
-  status.innerText = "⏳ Processing...";
-  csv.style.display = "none";
-  excel.style.display = "none";
-
   try {
-    const res = await fetch(`${API_URL}/upload`, {
-      method: "POST",
-      body: formData
-    });
+    const response = await fetch(
+      "https://bank-statement-converter-moih.onrender.com/upload",
+      {
+        method: "POST",
+        body: formData
+      }
+    );
 
-    const data = await res.json();
+    const data = await response.json();
 
-    if (!res.ok) {
-      status.innerText = "❌ Failed to process file";
+    if (!response.ok) {
+      status.innerHTML = "❌ Failed to process statement";
       return;
     }
 
-    status.innerText = "✅ Done!";
-    csv.href = API_URL + data.download_csv;
-    excel.href = API_URL + data.download_excel;
+    status.innerHTML = "✅ Done!";
 
-    document.querySelector(".downloads").style.display = "block";
+    document.getElementById("csvLink").href = data.download_csv;
+    document.getElementById("excelLink").href = data.download_excel;
 
+    downloads.style.display = "flex";
   } catch (err) {
-    status.innerText = "❌ Server error";
+    status.innerHTML = "❌ Server error";
   }
 }

@@ -2,44 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>BankConv – Bank Statement Converter</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BankConv – Smart Bank Statement Converter</title>
+
+  <!-- Poppins Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="logo">🏦 BankConv</div>
+    <button class="nav-btn">Get Started</button>
+  </nav>
+
   <!-- HERO -->
   <section class="hero">
-    <h1>🏦 BankConv</h1>
-    <p>Convert bank statements to Excel in seconds</p>
-    <button onclick="scrollToConverter()">Convert Statement</button>
-  </section>
+    <h1>Convert Bank Statements<br><span>to Excel in Seconds</span></h1>
+    <p>Secure • Fast • Professional • No Signup Required</p>
 
-  <!-- HOW IT WORKS -->
-  <section class="how">
-    <div class="step">📄 Upload PDF</div>
-    <div class="step">⚙️ Process Securely</div>
-    <div class="step">⬇️ Download Excel</div>
-  </section>
+    <div class="card">
+      <input type="file" id="fileInput" accept=".pdf" />
+      <button onclick="uploadPDF()">Convert Statement</button>
 
-  <!-- CONVERTER -->
-  <section class="converter" id="converter">
-    <h2>Upload Bank Statement</h2>
+      <div id="status"></div>
 
-    <input type="file" id="fileInput" accept=".pdf" />
-    <button onclick="upload()">Convert</button>
-
-    <p id="status"></p>
-
-    <div class="downloads">
-      <a id="csvLink" target="_blank">⬇ CSV</a>
-      <a id="excelLink" target="_blank">⬇ Excel</a>
+      <div class="downloads" id="downloads">
+        <a id="csvLink" target="_blank">⬇ Download CSV</a>
+        <a id="excelLink" target="_blank">⬇ Download Excel</a>
+      </div>
     </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="feature">⚡ Lightning Fast</div>
+    <div class="feature">🔒 Secure Processing</div>
+    <div class="feature">📊 Accurate Parsing</div>
+    <div class="feature">💼 Built for Professionals</div>
   </section>
 
   <!-- FOOTER -->
   <footer>
-    <p>© 2025 BankConv · Built by Aditya</p>
+    © 2025 BankConv • Built with ❤️ by Aditya
   </footer>
 
   <script src="script.js"></script>
